@@ -2,32 +2,33 @@ Sunshot - Bright Harvest Application
 =========
 
 ## Overview ##
-This application is divided into 2 parts: **Frontend Web application** and **RESTful API Server**.
-RESTful API Server is a Nodejs server built on top of [Express.js](http://expressjs.com/) framework, and frontend web application is a Single-page application (SPA) built on top of [AngularJS](https://angularjs.org/) framework.
+This application is divided into 2 parts: **Front-end web application** and **Restful API Server**. Server-side application is a NodeJS server built on top of [Express.js](http://expressjs.com/) framework. Client-side application is a HTML/CSS/JS Single-Page Application (SPA) built on top of [AngularJS](https://angularjs.org/) framework.
 
 ## Getting Setup ##
-To setup the server, you'll need [node](http://nodejs.org), the recommended version is 1.12.x, but latest version should be fine. You will also need a globally installed [grunt-cli](http://gruntjs.com/getting-started) and [http-server](https://npmjs.org/package/http-server).
+To setup the server, you'll need [node](http://nodejs.org), the recommended version is 1.12.x, but latest version should be fine. You will also need a globally installed [grunt-cli](http://gruntjs.com/getting-started) and [http-server](https://www.npmjs.com/package/http-server).
 
 Please execute following under root account or use `sudo`
 ```
-npm install -g grunt-cli
+npm install -g grunt-cli http-server
 ```
 
-Then browse this application folder at root and install all dependencies at `.\node` directory
+Then browse the application folder and install all dependencies at `node` directory
 ```
 cd node
 npm install
 ```
 
 ## Database Setup ##
-The server depends on MySQL database. If you don't have one, please download and [install](http://www.mysql.com) MySQL. For Ubuntu, you can run `apt-get`:
+The server uses on MySQL database, so if you don't have one, please download and [install](http://www.mysql.com) MySQL database. 
+
+For Ubuntu, you can run `apt-get`:
 ```
 sudo apt-get install mysql-server
 ```
-After installation, you can use MySQL [workbench](https://dev.mysql.com/downloads/workbench/) to connect to the database and create an appropriate schema. Remember to update the MySQL connection string in your `env` file (see `env_sample`).
+After installation, you can use MySQL [workbench](https://dev.mysql.com/downloads/workbench/) to connect and create database schemas.
 
 ## Environment Variable ##
-Make sure to set and source environment variables before migrating or starting server (see `env_sample`). For more detail on the environment variables, please see **Server Configuration** below.
+Plase make sure to set and source environment variables before migrating database or starting the server. An example of `.env` file can be found at `node\env_sample`. For more detail on configurable environment variables, please see **Server Configuration** below.
 
 Run the following command to source your `.env`
 
@@ -36,15 +37,22 @@ source your_config.env
 ```
 
 ## Database Migration ##
-To initialize database table, you will need to run migration command.
+To migrate database tables, you will need to run the following command:
 
 ```
 grunt dbmigrate
 ```
-This will execute every migrations, including `test-data`, in `.\node\datasource\schema-migrations`. For production migration, please remove the `test-data` migration file.
+In case you want to undo the migration, please run:
+```
+grunt dbdown
+```
+
+Be warn that these `dbmigrate` execute every migrations inside folder `node\datasource\schema-migrations`, including test data. 
+
+For production migration, please make sure database is clean by executing `dbdown` before removing the `20151126173400-test-data.js` file from the folder.
 
 ## Server Configuration ##
-Default server configurations resides in `.\node\config` and is managed by `node-config` module. 
+Default server configurations resides in `node\config\default.json`. The followings are configurable variables: 
 
 |                            |                                                                                                                                                                                                                                                    |                                                  | 
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------| 
@@ -65,9 +73,9 @@ Default server configurations resides in `.\node\config` and is managed by `node
 | FROM_EMAIL                 | The from email to use when sending out the emails                                                                                                                                                                                                  | admin@sunshot.com                                | 
 
 
-Other than default server configurations, some sensitive configurations must be set explicitly as environment variables (see `env_sample`). 
+Other than above configurations, some sensitive configurations must be set explicitly as environment variables. 
 
-The followings are the required environment variables:
+The followings are the configurable environment variables:
 
 |                      |                                              | 
 |----------------------|----------------------------------------------| 
@@ -96,10 +104,11 @@ npm start
 ```
 
 ## Run the Web ##
-Make sure to `apiUrl` is set at `.\angularjs\js\constants.js`.
+Make sure to point the web application to correct API Server by setting `apiUrl` at `angularjs\js\constants.js`.
 
-To start web app, please execute the following command at `.\angularjs`
+To start web app, please execute the following command at `angularjs`
 ```
+cd angularjs
 http-server -p 8000
 ```
 The web app will be available at `http://localhost:8000`.
