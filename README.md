@@ -2,7 +2,7 @@ Sunshot - Bright Harvest Application
 =========
 
 ## Overview ##
-This application is divided into 2 parts: **Front-end web application** and **Restful API Server**. Server-side application is a NodeJS server built on top of [Express.js](http://expressjs.com/) framework. Client-side application is a HTML/CSS/JS Single-Page Application (SPA) built on top of [AngularJS](https://angularjs.org/) framework.
+This application is divided into 2 parts: **Front-end web application** and **Restful API Server**. API server is built on NodeJS server with [Express.js](http://expressjs.com/) framework. Web application is a HTML/CSS/JS Single-Page Application (SPA) on top of [AngularJS](https://angularjs.org/) framework.
 
 ## Getting Setup ##
 To setup the server, you'll need [node](http://nodejs.org), the recommended version is 1.12.x, but latest version should be fine. You will also need a globally installed [grunt-cli](http://gruntjs.com/getting-started) and [http-server](https://www.npmjs.com/package/http-server).
