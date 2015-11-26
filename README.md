@@ -52,7 +52,7 @@ Be warn that these `dbmigrate` execute every migrations inside folder `node\data
 For production migration, please make sure database is clean by executing `dbdown` before removing the `20151126173400-test-data.js` file from the folder.
 
 ## Server Configuration ##
-Default server configurations resides in `node\config\default.json`. The followings are configurable variables: 
+Default server configurations resides in `node\config\default.json`. Following list describe all of the configuration in detail: 
 
 |                            |                                                                                                                                                                                                                                                    |                                                  | 
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------| 
@@ -73,16 +73,15 @@ Default server configurations resides in `node\config\default.json`. The followi
 | FROM_EMAIL                 | The from email to use when sending out the emails                                                                                                                                                                                                  | admin@sunshot.com                                | 
 
 
-Other than above configurations, some sensitive configurations must be set explicitly as environment variables. 
+Other than above configurations, some sensitive configuration must be set explicitly as environment variables. 
 
-The followings are the configurable environment variables:
+The followings are the configurable **environment variables**:
 
 |                      |                                              | 
 |----------------------|----------------------------------------------| 
 | Name                 | Description                                  | 
 | JWT_SECRET           | Jwt secret to use while generating jwt token | 
-| MYSQL_CONNECTION_URI |                                              | 
-|                      | mysql connection string                      | 
+| MYSQL_CONNECTION_URI | mysql connection string                      | 
 | SMTP_HOST            | Smtp host name to send the emails            | 
 | SMTP_PORT            | Smtp port number to send the emails          | 
 | SMTP_USERNAME        | Smtp username to use to send the emails      | 
@@ -96,6 +95,7 @@ Default web configuration resides in `.\angularjs\js\constants.js`
 |--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------| 
 | Name   | Description                                                                                                                                                                                            | Default               | 
 | apiUrl | Root url of the corresponding API Server. This url should not contains the backslash at the end of url. (I.e, http://localhost:4000/ is not an appropriate root url, please use http://localhost:4000) | http://localhost:4000 | 
+
 
 ## Run the Server ##
 To start the server, please execute the following command at `.\node`
